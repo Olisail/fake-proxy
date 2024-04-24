@@ -1,10 +1,12 @@
 {
   "name": "fake-proxy",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "fake proxy for offshore colleagues",
   "main": "proxy.js",
   "scripts": {
-    "start": "node proxy.js"
+    "start": "node proxy.js",
+    "start:another-port": "env FAKE_PROXY_PORT=5001 node proxy.js",
+    "start:debug:verbose": "env FAKE_PROXY_DEBUG=true FAKE_PROXY_PORT=5002 node proxy.js"
   },
   "keywords": [
     "fake",
