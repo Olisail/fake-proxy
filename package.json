@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node proxy.js",
     "start:another-port": "env FAKE_PROXY_PORT=5001 node proxy.js",
-    "start:debug:verbose": "env FAKE_PROXY_DEBUG=true FAKE_PROXY_PORT=5002 node proxy.js"
+    "start:debug:verbose": "env FAKE_PROXY_DEBUG=true FAKE_PROXY_PORT=5002 node proxy.js",
+    "start:slow": "env FAKE_PROXY_PORT=5002 FAKE_PROXY_THROTTLE_MS=10000 node proxy.js"
   },
   "keywords": [
     "fake",

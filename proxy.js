@@ -17,7 +17,14 @@ console.info('Root CA loaded successfully!');
 
 const debug = process.env.FAKE_PROXY_DEBUG === 'true';
 const port = process.env.FAKE_PROXY_PORT || 5000;
-const proxy = hoxy.createServer({ certAuthority }).listen(port, () => console.info(`The proxy is listening on port ${port}.`));
+const throttlingMs = parseInt(process.env.FAKE_PROXY_THROTTLE_MS, 10) || 0;
+const config = { certAuthority };
+if(throttlingMs > 0){
+    console.info(`Slowing down the proxy by ${throttlingMs}ms per request.`);
+    config.slow = { latency: throttlingMs };
+}
+
+const proxy = hoxy.createServer(config).listen(port, () => console.info(`The proxy is listening on port ${port}.`));
 
 proxy.log('error warn', process.stderr);
 proxy.log('info', process.stdout);
